@@ -1,0 +1,59 @@
+/* // style the css here.  */
+
+*{
+margin: 0; 
+padding: 0;
+}
+
+
+body {
+    height: 100vh; 
+    display: flex; 
+    justify-content:center ; 
+    align-items:center; 
+    font-family:sans-serif; 
+    background:#000;
+    color:white; 
+}
+
+#circle {
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid #555; 
+    display: flex;
+    justify-content: center;
+    align-items: CENTER;
+    margin: 20px auto;
+    transition: background-color 0.3s ease;
+
+}
+
+#letter {
+
+  font-size: 10rem;
+
+  font-weight: bold;
+
+  color: black;
+
+}
+
+#circle.correct {
+
+  background-color: #003400;
+
+}
+
+#circle.incorrect {
+
+  background-color: #5a0000;
+
+}
+
+
+#letter {
+
+  color: white;
+
+}
