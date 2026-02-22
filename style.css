@@ -12,20 +12,31 @@ body {
     justify-content:center ; 
     align-items:center; 
     font-family:sans-serif; 
-    background:#000;
+    background:#131829;
     color:white; 
 }
+
+#title{
+     width: 600px; 
+    height: 20px;
+        display: flex;
+        /* background-color: #d67c7c; */
+        /* align-items: center; */
+        justify-content: center;
+        font-size: 2rem;
+}
+
 
 #circle {
     width: 300px; 
     height: 300px;
     border-radius: 50%;
-    border: 5px solid #555; 
+    border: 5px solid #d67c7c; 
     display: flex;
     justify-content: center;
     align-items: CENTER;
     margin: 20px auto;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease-out;
 
 }
 
@@ -35,19 +46,19 @@ body {
 
   font-weight: bold;
 
-  color: black;
+  color: rgb(197, 16, 16);
 
 }
 
 #circle.correct {
 
-  background-color: #003400;
+  background-color: #000034;
 
 }
 
 #circle.incorrect {
 
-  background-color: #5a0000;
+  background-color: #5a0045;
 
 }
 
@@ -56,4 +67,16 @@ body {
 
   color: white;
 
+}
+
+
+#scoreCard{
+         width: 600px; 
+    height: 100px;
+    margin: 3rem;
+        display: flex;
+        background-color: #6d0b0b;
+        /* align-items: center; */
+        justify-content: center;
+        font-size: 2rem;
 }
