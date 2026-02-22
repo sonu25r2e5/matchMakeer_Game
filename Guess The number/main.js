@@ -67,7 +67,7 @@ if(guess === secretNumber){
 
 
 // for value increasing thhe input we use thhis. understand that. buddy. 
-input.value = " "; 
+input.value = ""; 
 input.focus(); 
 
 }
