@@ -11,3 +11,72 @@ const winnerH3 = document.getElementById("winner");
 
 
 
+let player1Roll = null; 
+let player2Roll = null; 
+
+roll1Btn.disabled = false; 
+
+roll2Btn.disabled = false; // for now it is empty 
+
+
+function getRandomNumber(min,maxx){
+    return Math.floor(
+        Math.random() * (max - min + 1)
+    ) + min;
+}
+
+function resetGame() {
+    player1Roll = null;  
+    player2Roll = null; 
+    result1Span.textContent = "-";
+    result2Span.textContent = "-";
+    winnerH3.textContent = "";
+    roll1Btn.disabled = false; 
+    roll2Btn.disabled = false; 
+}
+
+
+function decideWinnerandReset() {
+    if (player1Roll > player2Roll) {
+            winnerH3.textContent = "Player 1 is winner";
+    }   else if(player2Roll > player1Roll) {
+        winnerH3.textContent = "player 2 is winner";
+    }   else {
+        winnerH3.textContent = "It is tie! player again";
+    }
+
+    roll1Btn.disabled = true; 
+    roll2Btn.disabled = true; 
+
+    setTimeout(resetGame, 3000);
+
+}
+
+function handleRoll(playerNumber) {
+    const roll = getRandom(1,6); 
+     if (playerNumber === 1) {
+        result1Span.textContent = roll; 
+        roll1Btn.disabled = true; 
+        roll2Btn.disabled = false; 
+    } else {
+        player2Roll = roll; 
+        result2Span.textContent = roll; 
+        roll2Btn.disabled = true; 
+        roll1Btn.disabled = false; 
+
+    }
+
+        winnerH3.textContent = ""; 
+
+        if(player1Roll !== null && player2Roll !== null) {
+            decideWinnerandReset(); 
+        }
+    
+}
+
+
+roll1Btn.addEventListener("click", () => {
+    handleRoll(1)
+});
+
+roll2Btn.addEventListener("click", () => handleRoll(2));
