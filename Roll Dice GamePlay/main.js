@@ -19,7 +19,7 @@ roll1Btn.disabled = false;
 roll2Btn.disabled = false; // for now it is empty 
 
 
-function getRandomNumber(min,maxx){
+function getRandomNumber(min,max){
     return Math.floor(
         Math.random() * (max - min + 1)
     ) + min;
@@ -53,8 +53,9 @@ function decideWinnerandReset() {
 }
 
 function handleRoll(playerNumber) {
-    const roll = getRandom(1,6); 
+    const roll = getRandomNumber(1,6); 
      if (playerNumber === 1) {
+        player1Roll = roll; 
         result1Span.textContent = roll; 
         roll1Btn.disabled = true; 
         roll2Btn.disabled = false; 
