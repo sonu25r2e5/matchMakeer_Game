@@ -6,6 +6,7 @@ const scoreDisplay = document.getElementById("score");
 const timeLeftDisplay = document.getElementById("time-left");
 const startButton = document.getElementById("start-btn");
 const pauseButton = document.getElementById("pause-btn");
+const scoreboard = document.querySelector('.scoreboard');
 
 // for scoring the game we make tjhe logic here
 let score = 0; 
@@ -68,6 +69,22 @@ function handleAnimalClick(hole, animal){
     }
 }
 
+// handle wrong clicks (clicking an empty hole)
+function handleMissClick(hole){
+    if (!gameRunning || isPaused) return;
+    // decrease score but don't go below 0
+    score = Math.max(0, score - 1);
+    updateScore();
+    triggerShake();
+}
+
+function triggerShake(){
+    if (!scoreboard) return;
+    scoreboard.classList.add('shake');
+    // remove class after animation (shortly longer than CSS animation)
+    setTimeout(() => scoreboard.classList.remove('shake'), 400);
+}
+
 
 function showAnimalInRandomHole() {
     clearHoles(); 
@@ -85,6 +102,17 @@ function showAnimalInRandomHole() {
     // assign handler via onclick so that clearHoles can easily remove it
     hole.onclick = () => handleAnimalClick(hole, animal);
 }
+
+// permanent click listener for holes to detect misses (clicks when no animal)
+holes.forEach(hole => {
+    hole.addEventListener('click', () => {
+        // if there's no animal visible, treat as a miss
+        if (!gameRunning || isPaused) return;
+        if (!hole.querySelector('.animal')) {
+            handleMissClick(hole);
+        }
+    });
+});
 
 // pause/resume control
 function pauseGame() {
