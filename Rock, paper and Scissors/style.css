@@ -1,0 +1,105 @@
+body {
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* it places the height from donw*/
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #1a1a1a;
+    padding: 40px 60px;
+    border-radius: 15px;
+    box-shadow: 0 20px rgba(255, 255, 0.1, 0.1);
+    width: 400px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+
+.choices button {
+    font-size: 24px;
+    margin: 10px;
+    padding: 15px 30px;
+    border: 2px solid #ffffff;
+    background: transparent;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.choices button:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+.result p {
+    font-size: 22px;
+    margin: 15px 0;
+    min-height: 28px;
+    color: #ffffff;
+}
+
+.choices button:active {
+    transform: scale(0.92);
+}
+
+.choices button.is-selected {
+    animation: choice-pop 0.45s ease;
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.65);
+}
+
+.result p.is-revealed {
+    animation: result-reveal 0.35s ease-out;
+}
+
+@keyframes choice-pop {
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.16) rotate(-3deg);
+    }
+
+    75% {
+        transform: scale(0.96) rotate(2deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes result-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .choices button,
+    .result p {
+        animation: none !important;
+        transition: none;
+    }
+}
