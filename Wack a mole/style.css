@@ -1,12 +1,12 @@
 /* copy and paste to style.css */
- 
+
 body {
   text-align: center;
   font-family: Arial, sans-serif;
   background: aliceblue;
   font-size: 20px;
 }
- 
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 140px);
@@ -14,7 +14,7 @@ body {
   justify-content: center;
   margin-top: 40px;
 }
- 
+
 .hole {
   width: 140px;
   height: 140px;
@@ -27,7 +27,7 @@ body {
   justify-content: center;
   border: 3px solid grey;
 }
- 
+
 .hole span {
   pointer-events: none;
   font-size: 72px;
@@ -40,16 +40,16 @@ body {
   opacity: 1;
   transform: scale(1);
 }
- 
+
 .hole.mole {
   background-color: brown;
 }
- 
+
 .scoreboard {
   margin-top: 20px;
   font-size: 1.6em;
 }
- 
+
 #start-btn {
   margin-top: 30px;
   padding: 16px 32px;
@@ -61,7 +61,52 @@ body {
   border-radius: 16px;
   cursor: pointer;
 }
- 
+
+#description-btn,
+#close-description-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(39, 39, 39);
+  background-color: white;
+  border: 3px solid rgb(39, 39, 39);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px 28px;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content p {
+  line-height: 1.6;
+}
+
 #start-btn.disabled,
 #start-btn:disabled,
 #pause-btn.disabled,
@@ -91,10 +136,23 @@ body {
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  50% { transform: translateX(6px); }
-  75% { transform: translateX(-4px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
- 

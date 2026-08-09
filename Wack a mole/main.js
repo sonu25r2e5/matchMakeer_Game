@@ -6,22 +6,25 @@ const scoreDisplay = document.getElementById("score");
 const timeLeftDisplay = document.getElementById("time-left");
 const startButton = document.getElementById("start-btn");
 const pauseButton = document.getElementById("pause-btn");
+const descriptionButton = document.getElementById("description-btn");
+const closeDescriptionButton = document.getElementById("close-description-btn");
+const descriptionModal = document.getElementById("description-modal");
 const scoreboard = document.querySelector('.scoreboard');
 
 // for scoring the game we make tjhe logic here
-let score = 0; 
-let currentTime  = 30;  // timer is in for 30 seconds understand that . 
-let moleTimer = null; 
-let timerId = null; 
-let gameRunning = false; 
-let isPaused = false; 
+let score = 0;
+let currentTime = 30;  // timer is in for 30 seconds understand that . 
+let moleTimer = null;
+let timerId = null;
+let gameRunning = false;
+let isPaused = false;
 // animal emojii should be inserted here get iit form the internet boy . 
 // understand that. 
-const animals = ["🐒","🦋","🐘","🦒","🐶","🐱","🦁","🐸","🐢"]; 
+const animals = ["🐒", "🦋", "🐘", "🦒", "🐶", "🐱", "🦁", "🐸", "🐢"];
 
 
-function getRandomItem(arr){
-    return arr[Math.floor(Math.random()* arr.length)];
+function getRandomItem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // for clearning the holes we make this code understand that. 
@@ -29,7 +32,7 @@ function clearHoles() {
     holes.forEach(hole => {
         hole.innerHTML = "";
         // clear any previous click handler (we use onclick property below)
-        hole.onclick = null; 
+        hole.onclick = null;
     });
 }
 
@@ -45,15 +48,15 @@ function updateScore() {
 
 // for starting the botton 
 function enableStartButton() {
-    startButton.disabled = false; 
+    startButton.disabled = false;
     startButton.classList.remove("disabled");
 }
 
 
 function disableStartButton() {
-    startButton.disabled = true; 
+    startButton.disabled = true;
     startButton.classList.add(
-    "disabled"
+        "disabled"
     );
 }
 
@@ -61,16 +64,16 @@ function disableStartButton() {
 
 // NOW THE MANIN LOGIC STARTS HERE. 
 
-function handleAnimalClick(hole, animal){
+function handleAnimalClick(hole, animal) {
     if (hole.innerHTML.includes(animal)) {
         score++;
-        updateScore(); 
+        updateScore();
         hole.innerHTML = "";
     }
 }
 
 // handle wrong clicks (clicking an empty hole)
-function handleMissClick(hole){
+function handleMissClick(hole) {
     if (!gameRunning || isPaused) return;
     // decrease score but don't go below 0
     score = Math.max(0, score - 1);
@@ -78,7 +81,7 @@ function handleMissClick(hole){
     triggerShake();
 }
 
-function triggerShake(){
+function triggerShake() {
     if (!scoreboard) return;
     scoreboard.classList.add('shake');
     // remove class after animation (shortly longer than CSS animation)
@@ -87,7 +90,7 @@ function triggerShake(){
 
 
 function showAnimalInRandomHole() {
-    clearHoles(); 
+    clearHoles();
 
     // holes is a NodeList, getRandomItem works with array-like objects
     const hole = getRandomItem(holes);
@@ -146,10 +149,10 @@ function stopMoleMovement() {
 
 
 function startCountdown() {
-    timerId = setInterval(()=> {
-        currentTime--; 
-        updateTimeDisplay(); 
-        if (currentTime === 0 ) {
+    timerId = setInterval(() => {
+        currentTime--;
+        updateTimeDisplay();
+        if (currentTime === 0) {
             endGame();
         }
     }, 1000);       // every one seconds divisialbe by one 
@@ -157,42 +160,52 @@ function startCountdown() {
 
 
 function stopCountdown() {
-     clearInterval(timerId); 
+    clearInterval(timerId);
 }
 
-function resetGame(){
-    score = 0; 
-    currentTime = 30; 
-    updateScore(); 
+function resetGame() {
+    score = 0;
+    currentTime = 30;
+    updateScore();
     updateTimeDisplay();
     clearHoles();
 }
 
 
 function startGame() {
-    if(gameRunning) return; 
-    gameRunning = true; 
+    if (gameRunning) return;
+    gameRunning = true;
 
-    disableStartButton(); 
+    disableStartButton();
     pauseButton.disabled = false;
     pauseButton.textContent = "Pause";
     isPaused = false;
 
-    resetGame(); 
-    startMoleMovement(); 
-    startCountdown(); 
+    resetGame();
+    startMoleMovement();
+    startCountdown();
 
 }
 
 function endGame() {
-    gameRunning = false; 
-    stopCountdown(); 
+    gameRunning = false;
+    stopCountdown();
     stopMoleMovement();
-    clearHoles(); 
-    enableStartButton(); 
+    clearHoles();
+    enableStartButton();
     pauseButton.disabled = true;
     // giveing the final score
     alert(`Game Over! Final Score: ${score}`);
+}
+
+function openDescription() {
+    descriptionModal.classList.remove("hidden");
+    descriptionModal.setAttribute("aria-hidden", "false");
+}
+
+function closeDescription() {
+    descriptionModal.classList.add("hidden");
+    descriptionModal.setAttribute("aria-hidden", "true");
 }
 
 // initialize displays so they aren't empty on load
@@ -200,5 +213,16 @@ updateScore();
 updateTimeDisplay();
 
 startButton.addEventListener("click", startGame);
-
 pauseButton.addEventListener("click", pauseGame);
+descriptionButton.addEventListener("click", openDescription);
+closeDescriptionButton.addEventListener("click", closeDescription);
+descriptionModal.addEventListener("click", (event) => {
+    if (event.target === descriptionModal) {
+        closeDescription();
+    }
+});
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeDescription();
+    }
+});

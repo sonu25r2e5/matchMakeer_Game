@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BattleShip</title>
+</head>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+<body>
+    <h1>Battleship</h1>
+    <div class="game-intro">
+        <button id="info-toggle" class="info-toggle" type="button" aria-expanded="false">
+            About this game
+        </button>
+        <div id="game-description" class="game-description" hidden>
+            <p>BattleShip is a strategy game where you and the computer each hide two ships on a 10x10 grid. Take turns
+                choosing coordinates to try to sink the opposing fleet. Hit all enemy ships first to win!</p>
+        </div>
+    </div>
+    <div class="boards">
+        <div class="board">
+            <h2>Your board</h2>
+            <div class="grid-wrapper">
+                <div class="labels-col" id="player-labels-col"> </div>
+                <div class="board-content">
+                    <div class="labels-row" id="player-labels-row"></div>
+                    <div id="player-board" class="grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="board">
+            <h2>Enemy Board</h2>
+            <div class="grid-wrapper">
+                <div class="labels-col" id="ai-labels-col"></div>
+                <div class="board-content">
+                    <div class="labels-row" id="ai-labels-row"> </div>
+                    <div id="ai-board" class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="reset-button">Restart Game</button>
+    <button id="fullscreen-button" class="fullscreen-button" type="button">Fullscreen</button>
+    <div id="commentary"></div>
+    <div id="status"></div>
+
+    <div id="celebration" class="celebration hidden" role="dialog" aria-live="polite">
+        <div class="celebration-content">
+            <p class="celebration-title">You win!</p>
+            <p class="celebration-message">Congratulations! You sank the enemy fleet. Would you like to play again?</p>
+            <div class="celebration-actions">
+                <button id="play-again-button" type="button">Play Again</button>
+                <button id="maybe-later-button" type="button">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

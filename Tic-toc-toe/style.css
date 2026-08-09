@@ -20,19 +20,22 @@ h1 {
 
 #game {
     display: inline-block;
+    width: min(100vw - 40px, 620px);
+    margin: 0 auto;
 }
 
 .board {
     display: grid;
-    grid-template-columns: repeat(3, 200px);
-    grid-template-rows: repeat(3, 200px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0;
     margin-bottom: 50px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 .cell {
     border: none;
-    font-size: 96px;
+    font-size: clamp(48px, 8vw, 96px);
     font-weight: bold;
     display: flex;
     justify-content: center;
